@@ -243,23 +243,6 @@ vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" fon
 memicon = wibox.widget.imagebox()
 memicon:set_image(beautiful.mem)
 
---{{--| Mail widget |---------
-mailicon = wibox.widget.imagebox()
-
-vicious.register(mailicon, vicious.widgets.gmail, function(widget, args)
-    local newMail = tonumber(args["{count}"])
-    if newMail > 0 then
-        mailicon:set_image(beautiful.mail)
-    else
-        mailicon:set_image(beautiful.mailopen)
-    end
-end, 15)
-
--- to make GMail pop up when pressed:
-mailicon:buttons(awful.util.table.join(awful.button({ }, 1,
-function () awful.util.spawn_with_shell(browser .. " gmail.com") end)))
-
-
 -- Create a wibox for each screen and add it
 mywiboxtop = {}
 mywiboxbot = {}
@@ -374,10 +357,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
---	right_layout:add(mailicon)
---	right_layout:add(neticon)
---	right_layout:add(netwidget)
-  right_layout:add(mylayoutbox[s])
+  	 right_layout:add(mylayoutbox[s])
 	
     -- Now bring it all together (with the tasklist in the middle)
     local layouttop = wibox.layout.align.horizontal()
@@ -441,20 +421,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
 	 awful.key({ modkey, "Control" }, "d", function() awful.util.spawn("synclient TouchpadOff=1") end, "Disable Touchpad"),
 	 awful.key({ modkey, "Control" }, "e", function() awful.util.spawn("synclient TouchpadOff=0") end, "Enable Touchpad"),
-	 awful.key({ modkey, "Control" }, "m", function() awful.util.spawn("clementine & clementine") end, "Clementine"),
-	 awful.key({ modkey, "Shift"   }, "g", function() awful.util.spawn("gnome-terminal") end, "Gnome-terminal"),
-	 awful.key({ modkey, "Shift"   }, "f", function() awful.util.spawn("firefox") end, "firefox"),
-	 awful.key({ modkey, 			 }, "o",
-	 	  function ()
-			   if oneko == false then
-					oneko = true
-					awful.util.spawn("oneko -rv -tora")
-				else
-					oneko = false
-					awful.util.spawn("pkill -9 oneko")
-				end
-			end, "Oneko toggle"),
-
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -471,6 +437,19 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end, "Screenshot"),
     awful.key({ modkey, "Control" }, "r", awesome.restart, "Restart awesome"),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+	 awful.key({ modkey, "Control" }, "m", function() awful.util.spawn("clementine & clementine") end, "Clementine"),
+	 awful.key({ modkey, "Shift"   }, "g", function() awful.util.spawn("gnome-terminal") end, "Gnome-terminal"),
+	 awful.key({ modkey, "Shift"   }, "f", function() awful.util.spawn("firefox") end, "firefox"),
+	 awful.key({ modkey, 			 }, "o",
+	 	  function ()
+			   if oneko == false then
+					awful.util.spawn("oneko -rv -tora")
+				else
+					awful.util.spawn("pkill -9 oneko")
+				end
+				oneko = not oneko
+			end, "Oneko toggle"),
+
 	awful.key({ modkey }, ";",
 		function ()
 			awful.util.spawn("sync")
