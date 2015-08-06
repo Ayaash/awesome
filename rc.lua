@@ -21,6 +21,7 @@ local vicious = require("vicious")
 
 oneko = false
 screen_left = false
+touchpad = false
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -432,8 +433,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-	 awful.key({ modkey, "Control" }, "d", function() awful.util.spawn("synclient TouchpadOff=1") end, "Disable Touchpad"),
-	 awful.key({ modkey, "Control" }, "e", function() awful.util.spawn("synclient TouchpadOff=0") end, "Enable Touchpad"),
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -449,10 +448,19 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end, "Spawn a terminal"),
 	awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end, "Screenshot"),
     awful.key({ modkey, "Control" }, "r", awesome.restart, "Restart awesome"),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ modkey, "Shift"   }, "q", awesome.quit, "Quit awesome"),
 	 awful.key({ modkey, "Control" }, "m", function() awful.util.spawn("clementine & clementine") end, "Clementine"),
 	 awful.key({ modkey, "Shift"   }, "g", function() awful.util.spawn("gnome-terminal") end, "Gnome-terminal"),
-	 awful.key({ modkey, "Shift"   }, "f", function() awful.util.spawn("firefox") end, "firefox"),
+	 awful.key({ modkey, "Shift"   }, "f", function() awful.util.spawn("firefox") end, "Firefox"),
+	 awful.key({ modkey, "Shift"	 }, "t",
+	 	function ()
+			if touchpad == false then
+				awful.util.spawn("synclient TouchpadOff = 0")
+			else
+				awful.util.spawn("synclient TouchpadOff = 1")
+			end
+			touchpad = not touchpad
+		end, "TouchPad toggle"),
 	 awful.key({ modkey, 			 }, "o",
 	 	  function ()
 			   if oneko == false then
