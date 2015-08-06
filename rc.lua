@@ -22,6 +22,7 @@ local vicious = require("vicious")
 oneko = false
 screen_left = false
 touchpad = false
+wicd = false
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -455,9 +456,9 @@ globalkeys = awful.util.table.join(
 	 awful.key({ modkey, "Shift"	 }, "t",
 	 	function ()
 			if touchpad == false then
-				awful.util.spawn("synclient TouchpadOff = 0")
+				awful.util.spawn("synclient TouchpadOff=0")
 			else
-				awful.util.spawn("synclient TouchpadOff = 1")
+				awful.util.spawn("synclient TouchpadOff=1")
 			end
 			touchpad = not touchpad
 		end, "TouchPad toggle"),
