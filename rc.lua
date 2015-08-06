@@ -20,6 +20,7 @@ local vicious = require("vicious")
 -- Personal variables 
 
 oneko = false
+screen_left = false
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -403,6 +404,18 @@ globalkeys = awful.util.table.join(
             if client.focus then client.focus:raise() end
 		end, "Focus previous window"),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+	 awful.key({ modkey,	"Shift"	 }, "s",
+	 	function ()
+		 	if screen_left==false then
+				awful.util.spawn("xrandr --output VGA1 --mode 1024x768 --left-of LVDS1")
+			else
+				awful.util.spawn("xrandr --output VGA1 --off")
+			end
+			screen_left= not screen_left
+		end, "Additional screen toggle"),
+	awful.key({modkey,				}, "F1", function () awful.screen.focus(2) end, "Swich to left screen"),
+	awful.key({modkey,				}, "F2", function () awful.screen.focus(1) end, "Swich to right screen"),
+	 
 
     -- Layout manipulation
 	keydoc.group("Layout manipulation"),
@@ -473,7 +486,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "XF86AudioRaiseVolume",  APW.Up),
 	awful.key({ }, "XF86AudioLowerVolume",  APW.Down),
 	awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
-	awful.key({ modkey, }, "F1", keydoc.display)
+	awful.key({ modkey, }, "F3", keydoc.display)
 )
 
 clientkeys = awful.util.table.join(
