@@ -392,7 +392,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       , "Next tag"),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       , "Previous tag"),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore, "Switch to previous tag"),
-    awful.key({ modkey,           }, "b", function() wp_timer.emit_signal(timeout, 0) end, "Change background"),
+    awful.key({ modkey,           }, "b", function() wp_timer:emit_signal("timeout") end, "Change background"),
 
 	keydoc.group("Focus"),
     awful.key({ modkey,           }, "j",
@@ -716,6 +716,5 @@ function run_once(cmd)
 awful.util.spawn_with_shell("xcompmgr -C")
 awful.util.spawn_with_shell('~/.config/awesome/locker')
 awful.util.spawn_with_shell("skype")
-awful.util.spawn_with_shell("xset b off")
 run_once("wicd-gtk")
 awful.util.spawn_with_shell("synclient TouchpadOff=1")
