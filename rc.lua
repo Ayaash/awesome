@@ -710,14 +710,6 @@ APWTimer = timer({ timeout = 0.5 }) -- set update interval in s
 APWTimer:connect_signal("timeout", APW.Update)
 APWTimer:start()
 
-function run_once(cmd)
-	findme = cmd
-  	firstspace = cmd:find(" ")
-  	if tonumber(awful.util.pread("ps aux | grep -c " .. findme)) == 1 then
-   	awful.util.spawn_with_shell(cmd)
-  	end
- end
-
 awful.util.spawn_with_shell("xcompmgr -C")
 awful.util.spawn_with_shell('~/.config/awesome/locker')
 awful.util.spawn_with_shell("skype")
@@ -725,3 +717,15 @@ awful.util.spawn_with_shell("wicd-gtk")
 awful.layout.inc(layouts,  1)
 awful.util.spawn_with_shell("numlockx on")
 awful.util.spawn_with_shell("synclient TouchpadOff=1")
+
+-- Change gurb background for next boot
+
+grub_file = math.random(1, #wp_files)
+
+awful.util.spawn_with_shell("rm -f /boot/grub/themes/starfield/starfield.png")
+
+if string.sub(wp_files[grub_file], -3) ~= "png" then
+	awful.util.spawn_with_shell("convert "..wp_path..wp_files[grub_file].." /boot/grub/themes/starfield/starfield.png")
+else
+	awful.util.spawn_with_shell("cp "..wp_path..wp_files[grub_file].." /boot/grub/themes/starfield/starfield.png")
+end
