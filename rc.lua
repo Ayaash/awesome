@@ -411,7 +411,6 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
 		end, "Focus previous window"),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 	 awful.key({ modkey,	"Shift"	 }, "s",
 	 	function ()
 		 	if screen_left==false then
@@ -456,9 +455,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end, "Screenshot"),
     awful.key({ modkey, "Control" }, "r", awesome.restart, "Restart awesome"),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit, "Quit awesome"),
-	 awful.key({ modkey, "Control" }, "m", function() awful.util.spawn("clementine & clementine") end, "Clementine"),
 	 awful.key({ modkey, "Shift"   }, "g", function() awful.util.spawn("gnome-terminal") end, "Gnome-terminal"),
-	 awful.key({ modkey, "Shift"   }, "f", function() awful.util.spawn("firefox") end, "Firefox"),
 	 awful.key({ modkey, "Shift"	 }, "t",
 	 	function ()
 			if touchpad == false then

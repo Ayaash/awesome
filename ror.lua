@@ -14,5 +14,6 @@
 table5={
    ["f"]={"firefox","Firefox"}, 
    ["s"]={"skype","Skype"}, 
+   ["w"]={"Wicd-menu","wicd-gtk"}, 
    ["Control-m"]={"clementine","Clementine"} 
 }
