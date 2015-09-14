@@ -16,8 +16,11 @@ local APW = require("apw/widget")
 require("modules/keydoc")
 -- Vicious
 local vicious = require("vicious")
+-- Run or Raise
+local ror = require("aweror")
 
 -- Personal variables 
+
 
 oneko = false
 screen_left = false
@@ -26,6 +29,8 @@ wicd = false
 
 -- Load Debian menu entries
 require("debian.menu")
+-- Load revelation
+require("revelation")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -392,6 +397,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       , "Next tag"),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       , "Previous tag"),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore, "Switch to previous tag"),
+    awful.key({ modkey,           }, "e", function() revelation({class="URxvt"}) end, "Revelation URXVT"),
     awful.key({ modkey,           }, "b", function() wp_timer:emit_signal("timeout") end, "Change background"),
 
 	keydoc.group("Focus"),
@@ -497,6 +503,8 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
 	awful.key({ modkey, }, "F3", keydoc.display)
 )
+
+globalkeys = awful.util.table.join(globalkeys, ror.genkeys(modkey))
 
 clientkeys = awful.util.table.join(
 	keydoc.group("Window-specific bindings"),
