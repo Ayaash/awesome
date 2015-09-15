@@ -15,5 +15,5 @@ table5={
    ["f"]={"firefox","Firefox"}, 
    ["s"]={"skype","Skype"}, 
    ["w"]={"wicd-gtk","Wicd"}, 
-   ["Control-m"]={"clementine","Clementine"} 
+   ["c"]={"clementine","Clementine"} 
 }
