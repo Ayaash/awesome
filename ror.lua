@@ -15,6 +15,6 @@ table5={
    ["f"]={"firefox","Firefox"}, 
    ["s"]={"skype","Skype"}, 
    ["w"]={"wicd-gtk","Wicd"}, 
-   ["c"]={"clementine","Clementine"} 
-   ["g"]={"steam","steam"} 
+   ["c"]={"clementine","Clementine"},
+   ["g"]={"steam","Steam"} 
 }
