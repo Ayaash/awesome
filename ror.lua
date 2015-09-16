@@ -16,4 +16,5 @@ table5={
    ["s"]={"skype","Skype"}, 
    ["w"]={"wicd-gtk","Wicd"}, 
    ["c"]={"clementine","Clementine"} 
+   ["g"]={"steam","steam"} 
 }
