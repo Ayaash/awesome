@@ -505,7 +505,7 @@ globalkeys = awful.util.table.join(globalkeys, ror.genkeys(modkey))
 
 clientkeys = awful.util.table.join(
 	keydoc.group("Window-specific bindings"),
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end, "Fullscreen"),
+    awful.key({ modkey,           }, "d",      function (c) c.fullscreen = not c.fullscreen  end, "Fullscreen"),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     , "Toggle floating"),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end, "Switch with master window"),
