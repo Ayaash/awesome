@@ -181,7 +181,7 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
     else
         return ""
     end
-    return '<span background="#C2C2A4" font="'..font..'"> <span font ="'..font..'" color="#FFFFFF">'..args["{"..interface.." down_kb}"]..'kbps'..'</span></span>' end, 10)
+    return '<span background="'..beautiful.colors.violet..'" font="'..font..'"> <span font ="'..font..'" color="#FFFFFF">'..args["{"..interface.." down_kb}"]..'kbps'..'</span></span>' end, 10)
 
 ---{{---| Wifi Signal Widget |-------
 neticon = wibox.widget.imagebox()
@@ -347,12 +347,12 @@ for s = 1, screen.count() do
 	info:add(arr3)
 	info:add(cpuwidget)
 	info:add(cpuicon)
+	info:add(netwidget)
 	info:add(arr2)
 	info:add(APW)
 	info:add(arr1)
 	info:add(datewidget)
 	info:add(rra1)
-	info:add(netwidget)
 	info:add(baticon)
     info:add(batterywidget)
 	info:add(rra2)
