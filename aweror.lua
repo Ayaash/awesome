@@ -61,6 +61,36 @@ function aweror.run_or_raise(cmd, properties)
       return
    end
    awful.util.spawn(cmd)
+   for i, c in pairs(clients) do
+      --make an array of matched clients
+      if match(properties, c) then
+         n = n + 1
+         matched_clients[n] = c
+         if c == focused then
+            findex = n
+         end
+      end
+   end
+   if n > 0 then
+      local c = matched_clients[1]
+      -- if the focused window matched switch focus to next in list
+      if 0 < findex and findex < n then
+         c = matched_clients[findex+1]
+      end
+      local ctags = c:tags()
+      if #ctags == 0 then
+         -- ctags is empty, show client on current tag
+         local curtag = awful.tag.selected()
+         awful.client.movetotag(curtag, c)
+      else
+         -- Otherwise, pop to first tag client is visible on
+         awful.tag.viewonly(ctags[1])
+      end
+      -- And then focus the client
+      client.focus = c
+      c:raise()
+      return
+   end
 end
 
 -- Returns true if all pairs in table1 are present in table2
@@ -97,7 +127,7 @@ function aweror.genkeys(mod1)
       i=i:sub(-1,-1)
     end
     rorkeys = awful.util.table.join(rorkeys,
-      awful.key({ mod1, modifier}, i, genfun(v)))
+      awful.key({ mod1, modifier}, i, genfun(v), v[2].." Run_or_Raise"))
   end
   return rorkeys
 end

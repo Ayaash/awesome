@@ -20,8 +20,6 @@ local vicious = require("vicious")
 local ror = require("aweror")
 
 -- Personal variables 
-
-
 oneko = false
 screen_left = false
 touchpad = false
@@ -64,7 +62,7 @@ beautiful.init("~/.config/awesome/powerarrowf/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
-editor = os.getenv("EDITOR") or "vim"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 
@@ -178,7 +176,7 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
     local interface = ""
     if args["{wlp2s0 carrier}"] == 1 then
         interface = "wlp2s0"
-    elseif args["{enp0s25 carrier}"] == 1 then
+    elseif args["{enp3s0f2 carrier}"] == 1 then
         interface = "enp0s25"
     else
         return ""
@@ -196,7 +194,7 @@ vicious.register(neticon, vicious.widgets.wifi, function(widget, args)
     else
         neticon:set_image(beautiful.netlow)
     end
-end, 120, 'wlp3s0')
+end, 120, 'wlp2s0')
 
 
 --{{ Battery Widget }} --
@@ -354,6 +352,7 @@ for s = 1, screen.count() do
 	info:add(arr1)
 	info:add(datewidget)
 	info:add(rra1)
+	info:add(netwidget)
 	info:add(baticon)
     info:add(batterywidget)
 	info:add(rra2)
@@ -491,8 +490,6 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end),
 
 	-- Other
 	awful.key({ }, "XF86AudioRaiseVolume",  APW.Up),
@@ -590,15 +587,13 @@ awful.rules.rules = {
                      keys = clientkeys,
 					 size_hints_honor = false,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+    { rule = { class = "Firefox" },
+      properties = { tag = tags[1][2] } },
+    { rule = { class = "Clementine" },
+      properties = { tag = tags[1][9] } },
 }
 -- }}}
 
@@ -710,9 +705,11 @@ APWTimer = timer({ timeout = 0.5 }) -- set update interval in s
 APWTimer:connect_signal("timeout", APW.Update)
 APWTimer:start()
 
+-- user commands runned during start
 awful.util.spawn_with_shell("xcompmgr -C")
 awful.util.spawn_with_shell('~/.config/awesome/locker')
 awful.util.spawn_with_shell("skype")
+awful.util.spawn_with_shell("pkill -9 wicd-client")
 awful.util.spawn_with_shell("wicd-gtk")
 awful.layout.inc(layouts,  1)
 awful.util.spawn_with_shell("numlockx on")
@@ -720,12 +717,10 @@ awful.util.spawn_with_shell("synclient TouchpadOff=1")
 
 -- Change gurb background for next boot
 
-grub_file = math.random(1, #wp_files)
+grub_wp = math.random(1, #wp_files)
 
-awful.util.spawn_with_shell("rm -f /boot/grub/themes/starfield/starfield.png")
-
-if string.sub(wp_files[grub_file], -3) ~= "png" then
-	awful.util.spawn_with_shell("convert "..wp_path..wp_files[grub_file].." /boot/grub/themes/starfield/starfield.png")
+if string.sub(wp_files[grub_wp], -3) ~= "png" then
+	awful.util.spawn_with_shell("convert "..wp_path..wp_files[grub_wp].." /boot/grub/themes/starfield/starfield.png")
 else
-	awful.util.spawn_with_shell("cp "..wp_path..wp_files[grub_file].." /boot/grub/themes/starfield/starfield.png")
+	awful.util.spawn_with_shell("cp "..wp_path..wp_files[grub_wp].." /boot/grub/themes/starfield/starfield.png")
 end
