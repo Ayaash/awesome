@@ -20,10 +20,9 @@ local vicious = require("vicious")
 local ror = require("aweror")
 
 -- Personal variables 
-oneko = false
-screen_left = false
-touchpad = false
-wicd = false
+local oneko = false
+local screen_left = false
+local touchpad = false
 
 -- Load Debian menu entries
 require("debian.menu")
