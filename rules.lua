@@ -1,10 +1,14 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local binding = require("binding")
+local naughty = require("naughty")
 
 rule = {}
 
 function rule.globalrules()
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during rules!"
+                     })
 	local globalRule = { 
 		-- Rules for all clients
 		{ rule = { },
@@ -14,7 +18,7 @@ function rule.globalrules()
 		 raise = true,
 		 keys = binding.clientkeys(),
 		 size_hints_honor = false,
-		 buttons = clientbuttons }},
+		 buttons = binding.clientbuttons() }},
 		{ rule = { class = "gimp" },
 		 properties = { floating = true } },
 		{ rule = { class = "Firefox" },
