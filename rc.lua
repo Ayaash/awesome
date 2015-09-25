@@ -400,7 +400,7 @@ root.keys(globalkeys)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = { rule.globalrules() }
+awful.rules.rules = rule.globalrules()
 -- }}}
 
 -- {{{ Signals
