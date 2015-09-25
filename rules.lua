@@ -6,9 +6,6 @@ local naughty = require("naughty")
 rule = {}
 
 function rule.globalrules()
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during rules!"
-                     })
 	local globalRule = { 
 		-- Rules for all clients
 		{ rule = { },
