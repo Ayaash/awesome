@@ -24,10 +24,6 @@ local binding = require("binding")
 local rule = require("rules")
 
 -- Personal variables 
-oneko = false
-screen_left = false
-touchpad = false
-wicd = false
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -71,6 +67,11 @@ editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 
 font = "Terminus 12"
+
+oneko = false
+screen_left = false
+touchpad = false
+wicd = false
 
 -- {{ These are the power arrow dividers/separators }} --
 arr1 = wibox.widget.imagebox()
@@ -181,7 +182,7 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
     if args["{wlp2s0 carrier}"] == 1 then
         interface = "wlp2s0"
     elseif args["{enp3s0f2 carrier}"] == 1 then
-        interface = "enp0s25"
+        interface = "enp3s0f2"
     else
         return ""
     end
