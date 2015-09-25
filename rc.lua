@@ -22,6 +22,8 @@ local ror = require("aweror")
 local binding = require("binding")
 -- Rules
 local rule = require("rules")
+-- Other
+local other = require("other")
 
 -- Personal variables 
 
@@ -66,12 +68,37 @@ editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 
+-- Default modkey.
+-- Usually, Mod4 is the key with a logo between Control and Alt.
+-- If you do not like this or do not have such a key,
+-- I suggest you to remap Mod4 to another key using xmodmap or other tools.
+-- However, you can use another modifier like Mod1, but it may interact with others.
+modkey = "Mod4"
+
 font = "Terminus 12"
 
 oneko = false
 screen_left = false
 touchpad = false
 wicd = false
+
+-- Table of layouts to cover with awful.layout.inc, order matters.
+-- }}}
+layouts =
+{
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier
+}
 
 -- {{ These are the power arrow dividers/separators }} --
 arr1 = wibox.widget.imagebox()
@@ -101,38 +128,9 @@ arr8:set_image(beautiful.arr8)
 arr9 = wibox.widget.imagebox()
 arr9:set_image(beautiful.arr9)
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+-- Wallpaper
+other.wallpaper()
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts =
-{
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
-}
--- }}}
-
--- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
--- }}}
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
@@ -188,20 +186,6 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
     end
     return '<span background="'..beautiful.colors.violet..'" font="'..font..'"> <span font ="'..font..'" color="#FFFFFF">'..args["{"..interface.." down_kb}"]..'kbps'..'</span></span>' end, 10)
 
----{{---| Wifi Signal Widget |-------
-neticon = wibox.widget.imagebox()
-vicious.register(neticon, vicious.widgets.wifi, function(widget, args)
-    local sigstrength = tonumber(args["{link}"])
-    if sigstrength > 69 then
-        neticon:set_image(beautiful.nethigh)
-    elseif sigstrength > 40 and sigstrength < 70 then
-        neticon:set_image(beautiful.netmedium)
-    else
-        neticon:set_image(beautiful.netlow)
-    end
-end, 120, 'wlp2s0')
-
-
 --{{ Battery Widget }} --
 baticon = wibox.widget.imagebox()
 baticon:set_image(beautiful.baticon)
@@ -209,6 +193,7 @@ baticon:set_image(beautiful.baticon)
 batwidget = wibox.widget.textbox()
 vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="'..font..'"><span font="'..font..'" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 30, "BAT0" )
 --{{---| File Size widget |-----
+
 fswidget = wibox.widget.textbox()
 
 vicious.register(fswidget, vicious.widgets.fs,
@@ -512,15 +497,8 @@ APWTimer = timer({ timeout = 0.5 }) -- set update interval in s
 APWTimer:connect_signal("timeout", APW.Update)
 APWTimer:start()
 
--- user commands run during start
-awful.util.spawn_with_shell("xcompmgr -C")
-awful.util.spawn_with_shell('~/.config/awesome/locker')
-awful.util.spawn_with_shell("skype")
-awful.util.spawn_with_shell("pkill -9 wicd-client")
-awful.util.spawn_with_shell("wicd-gtk")
-awful.layout.inc(layouts,  1)
-awful.util.spawn_with_shell("numlockx on")
-awful.util.spawn_with_shell("synclient TouchpadOff=1")
+-- User commands
+other.userCommands()
 
 -- Change gurb background for next boot
 
