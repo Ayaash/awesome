@@ -21,7 +21,7 @@ local ror = require("aweror")
 -- Binding
 local binding = require("binding")
 -- Rules
-local rules = require("rules")
+local rule = require("rules")
 
 -- Personal variables 
 oneko = false
@@ -400,7 +400,7 @@ root.keys(globalkeys)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = { rules.global_rules() }
+awful.rules.rules = { rule.globalrules() }
 -- }}}
 
 -- {{{ Signals
