@@ -131,24 +131,12 @@ arr9:set_image(beautiful.arr9)
 -- Wallpaper
 other.wallpaper()
 
-
--- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
-end
--- }}}
+tags = other.tags()
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
+myawesomemenu = other.awesomemenu()
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
@@ -166,12 +154,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 
 --{{-- Time and Date Widget }} --
-tdwidget = wibox.widget.textbox()
-local strf = '<span font="' .. font .. '" color="#EEEEEE" background="#777E76">%b %d %I:%M</span>'
-vicious.register(tdwidget, vicious.widgets.date, strf, 20)
-
-clockicon = wibox.widget.imagebox()
-clockicon:set_image(beautiful.clock)
+datewidget = wibox.widget.textbox()
+vicious.register(datewidget,
+				 vicious.widgets.date,
+				 "<span font='"..font.."' color='"..beautiful.colors.base03.."' background='"..beautiful.colors.cyan.."'>%b %d %R</span>",
+				 20)
 
 --{{ Net Widget }} --
 netwidget = wibox.widget.textbox()
@@ -189,9 +176,9 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
 --{{ Battery Widget }} --
 baticon = wibox.widget.imagebox()
 baticon:set_image(beautiful.baticon)
+batterywidget = wibox.widget.textbox()
+vicious.register(batterywidget, vicious.widgets.bat, "<span background='"..beautiful.colors.blue.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1$2%</span>", 10, "BAT0")
 
-batwidget = wibox.widget.textbox()
-vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="'..font..'"><span font="'..font..'" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 30, "BAT0" )
 --{{---| File Size widget |-----
 
 fswidget = wibox.widget.textbox()
@@ -203,27 +190,6 @@ vicious.register(fswidget, vicious.widgets.fs,
 fsicon = wibox.widget.imagebox()
 fsicon:set_image(beautiful.fsicon)
 
-----{{--| Volume / volume icon |----------
-volume = wibox.widget.textbox()
-vicious.register(volume, vicious.widgets.volume,
-'<span background="#4B3B51" font="'..font..'"><span font="'..font..'" color="#EEEEEE"> Vol:$1 </span></span>', 0.3, "Master")
-
-volumeicon = wibox.widget.imagebox()
-vicious.register(volumeicon, vicious.widgets.volume, function(widget, args)
-    local paraone = tonumber(args[1])
-
-    if args[2] == "♩" or paraone == 0 then
-        volumeicon:set_image(beautiful.mute)
-    elseif paraone >= 67 and paraone <= 100 then
-        volumeicon:set_image(beautiful.volhi)
-    elseif paraone >= 33 and paraone <= 66 then
-        volumeicon:set_image(beautiful.volmed)
-    else
-        volumeicon:set_image(beautiful.vollow)
-    end
-
-end, 0.3, "Master")
-
 --{{---| CPU / sensors widget |-----------
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu,
@@ -233,9 +199,8 @@ cpuicon = wibox.widget.imagebox()
 cpuicon:set_image(beautiful.cpuicon)
 
 --{{--| MEM widget |-----------------
-memwidget = wibox.widget.textbox()
-
-vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="'..font..'"> <span font="'..font..'" color="#EEEEEE" background="#777E76">$1% $2MB </span></span>', 20)
+memwidget2 = wibox.widget.textbox()
+vicious.register(memwidget2, vicious.widgets.mem, "<span background='"..beautiful.colors.violet.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1% ($2MB/$3MB)</span>", 13)
 memicon = wibox.widget.imagebox()
 memicon:set_image(beautiful.mem)
 
@@ -290,17 +255,8 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
-datewidget = wibox.widget.textbox()
-vicious.register(datewidget,
-				 vicious.widgets.date,
-				 "<span font='"..font.."' color='"..beautiful.colors.base03.."' background='"..beautiful.colors.cyan.."'>%b %d %R</span>",
-				 20)
 
-memwidget2 = wibox.widget.textbox()
-vicious.register(memwidget2, vicious.widgets.mem, "<span background='"..beautiful.colors.violet.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1% ($2MB/$3MB)</span>", 13)
 
-batterywidget = wibox.widget.textbox()
-vicious.register(batterywidget, vicious.widgets.bat, "<span background='"..beautiful.colors.blue.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1$2%</span>", 10, "BAT0")
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen

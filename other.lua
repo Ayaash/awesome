@@ -19,8 +19,8 @@ local layouts =
 	awful.layout.suit.magnifier
 }
 
+-- user commands run during start
 function other.userCommands()
-	-- user commands run during start
 	awful.util.spawn_with_shell("xcompmgr -C")
 	awful.util.spawn_with_shell('~/.config/awesome/locker')
 	awful.util.spawn_with_shell("skype")
@@ -31,12 +31,35 @@ function other.userCommands()
 	awful.util.spawn_with_shell("synclient TouchpadOff=1")
 end
 
+terminal = "urxvt"
+
+-- Wallpaper
 function other.wallpaper()
 	if beautiful.wallpaper then
 		for s = 1, screen.count() do
 			gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 		end
 	end
+end
+
+-- Define a tag table which hold all screen tags.
+function other.tags()
+	local tags = {}
+	for s = 1, screen.count() do
+		-- Each screen has its own tag table.
+		tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+	end
+	return tags
+end
+
+function other.awesomemenu()
+	myawesomemenu = {
+		{ "manual", terminal .. " -e man awesome" },
+		{ "edit config", editor_cmd .. " " .. awesome.conffile },
+		{ "restart", awesome.restart },
+		{ "quit", awesome.quit }
+	}
+	return myawesomemenu
 end
 
 return other
