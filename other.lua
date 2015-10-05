@@ -62,4 +62,12 @@ function other.awesomemenu()
 	return myawesomemenu
 end
 
+function other.grubWP(grub_WP)
+	if string.sub(wp_files[grub_wp], -3) ~= "png" then
+		awful.util.spawn_with_shell("convert "..wp_path..wp_files[grub_wp].." /boot/grub/themes/starfield/starfield.png")
+	else
+		awful.util.spawn_with_shell("cp "..wp_path..wp_files[grub_wp].." /boot/grub/themes/starfield/starfield.png")
+	end
+end
+
 return other
