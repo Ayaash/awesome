@@ -30,12 +30,9 @@ local signal = require("signal")
 local other = require("other")
 
 -- Personal variables 
-<<<<<<< HEAD
 local oneko = false
 local screen_left = false
 local touchpad = false
-=======
->>>>>>> modulaire
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -82,6 +79,8 @@ wp_files = {}
 for f in io.popen("ls "..wp_path):lines() do
 	table.insert(wp_files, f)
 end
+
+wp_timer = timer { timeout = 0 }
 wp_index = math.random( 1, #wp_files)
 
 wp_timer:connect_signal("timeout", signal.timeout)
@@ -150,7 +149,6 @@ wid.createwibox(screen)
 -- Mouse bindings
 root.buttons(binding.mousebinding())
 
-wp_timer = timer { timeout = 0 }
 
 -- Key bindings
 globalkeys = binding.keybinding()
