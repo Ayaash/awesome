@@ -30,9 +30,6 @@ local signal = require("signal")
 local other = require("other")
 
 -- Personal variables 
-local oneko = false
-local screen_left = false
-local touchpad = false
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -90,11 +87,6 @@ APWTimer = timer({ timeout = 0.5 }) -- set update interval in s
 APWTimer:connect_signal("timeout", APW.Update)
 APWTimer:start()
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
 font = "Terminus 12"

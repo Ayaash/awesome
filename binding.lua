@@ -20,6 +20,9 @@ local vicious = require("vicious")
 local ror = require("aweror")
 
 binding = {}
+local oneko = false
+local touchpad = false
+local screen_left = false
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
