@@ -23,12 +23,12 @@ local layouts =
 function other.userCommands()
 	awful.util.spawn_with_shell("xcompmgr -C")
 	awful.util.spawn_with_shell('~/.config/awesome/locker')
-	awful.util.spawn_with_shell("skype")
 	awful.util.spawn_with_shell("pkill -9 wicd-client")
 	awful.util.spawn_with_shell("wicd-gtk")
 	awful.layout.inc(layouts,  1)
 	awful.util.spawn_with_shell("numlockx on")
 	awful.util.spawn_with_shell("synclient TouchpadOff=1")
+	awful.util.spawn_with_shell("skype")
 end
 
 terminal = "urxvt"
