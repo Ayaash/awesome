@@ -108,7 +108,7 @@ function binding.keybinding()
 	awful.key({ modkey, "Control" }, "r", awesome.restart, "Restart awesome"),
 	awful.key({ modkey, "Shift"   }, "q", awesome.quit, "Quit awesome"),
 	awful.key({ modkey, "Shift"   }, "g", function() awful.util.spawn("gnome-terminal") end, "Gnome-terminal"),
-	awful.key({ modkey, "Shift"	 }, "t",
+	awful.key({ modkey, }, "t",
 	function ()
 		if touchpad == false then
 			awful.util.spawn("synclient TouchpadOff=0")
