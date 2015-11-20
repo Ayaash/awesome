@@ -22,6 +22,8 @@ function rule.globalrules()
 		 properties = { tag = tags[1][2] } },
 		{ rule = { class = "Clementine" },
 		 properties = { tag = tags[1][9] } },
+		{ rule = { class = "Steam" },
+		 properties = { tag = tags[1][8] } },
 	}
 	return globalRule
 end
