@@ -24,6 +24,10 @@ function rule.globalrules()
 		 properties = { tag = tags[1][9] } },
 		{ rule = { class = "Steam" },
 		 properties = { tag = tags[1][8] } },
+		{ rule = { class = "Skype" },
+		 properties = { tag = tags[1][1] } },
+		{ rule = { class = "Wicd" },
+		 properties = { tag = tags[1][1] } },
 	}
 	return globalRule
 end
