@@ -49,7 +49,6 @@ function binding.keybinding()
 	awful.key({ modkey,           }, "Left",   awful.tag.viewprev       , "Next tag"),
 	awful.key({ modkey,           }, "Right",  awful.tag.viewnext       , "Previous tag"),
 	awful.key({ modkey,           }, "Escape", awful.tag.history.restore, "Switch to previous tag"),
-	awful.key({ modkey,           }, "e", function() revelation({class="URxvt"}) end, "Revelation URXVT"),
 	awful.key({ modkey,           }, "b", function() wp_timer:emit_signal("timeout") end, "Change background"),
 
 	keydoc.group("Focus"),
