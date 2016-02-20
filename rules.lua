@@ -18,16 +18,18 @@ function rule.globalrules()
 		 buttons = binding.clientbuttons() }},
 		{ rule = { class = "gimp" },
 		 properties = { floating = true } },
-		{ rule = { class = "Firefox" },
-		 properties = { tag = tags[1][2] } },
+		{ rule = { class = "Vivaldi" },
+		 properties = { tag = tags[1][2], maximized_horizontal = true, maximized_vertical = true } },
 		{ rule = { class = "Clementine" },
-		 properties = { tag = tags[1][9] } },
+		 properties = { tag = tags[1][9], maximized = true } },
 		{ rule = { class = "Steam" },
 		 properties = { tag = tags[1][8] } },
 		{ rule = { class = "Skype" },
 		 properties = { tag = tags[1][1] } },
 		{ rule = { class = "Wicd" },
 		 properties = { tag = tags[1][1] } },
+		{ rule = { class = "Discord" },
+		 properties = { tag = tags[1][3], maximized_horizontal = true, maximized_vertical = true } },
 	}
 	return globalRule
 end

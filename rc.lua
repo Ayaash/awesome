@@ -33,8 +33,6 @@ local other = require("other")
 
 -- Load Debian menu entries
 require("debian.menu")
--- Load revelation
-require("revelation")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

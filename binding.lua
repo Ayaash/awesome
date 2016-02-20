@@ -144,9 +144,9 @@ function binding.keybinding()
 	end),
 
 	-- Other
-	awful.key({ }, "XF86AudioRaiseVolume",  APW.Up),
-	awful.key({ }, "XF86AudioLowerVolume",  APW.Down),
-	awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
+	awful.key({ "Mod1" }, "w",  APW.Up),
+	awful.key({"Mod1" }, "x",  APW.Down),
+	awful.key({"Mod1" }, "c",         APW.ToggleMute),
 	awful.key({ modkey, }, "F3", keydoc.display)
 	)
 
