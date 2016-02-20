@@ -12,7 +12,7 @@
 -- for browsers, or the file name for emacs).
 
 table5={
-   ["f"]={"vivaldi-snapshot","Vivaldi"}, 
+   ["f"]={"vivaldi-snapshot","vivaldi"}, 
    ["s"]={"skype","Skype"}, 
    ["w"]={"wicd-gtk","Wicd"}, 
    ["c"]={"clementine","Clementine"},

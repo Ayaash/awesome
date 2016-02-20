@@ -18,7 +18,7 @@ function rule.globalrules()
 		 buttons = binding.clientbuttons() }},
 		{ rule = { class = "gimp" },
 		 properties = { floating = true } },
-		{ rule = { class = "Vivaldi" },
+		{ rule = { class = "vivaldi" },
 		 properties = { tag = tags[1][2], maximized_horizontal = true, maximized_vertical = true } },
 		{ rule = { class = "Clementine" },
 		 properties = { tag = tags[1][9], maximized = true } },
