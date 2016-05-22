@@ -144,9 +144,9 @@ function binding.keybinding()
 	end),
 
 	-- Other
-	awful.key({ "Mod1" }, "w",  APW.Up),
+	awful.key({ "Mod1" }, "c",  APW.Up),
 	awful.key({"Mod1" }, "x",  APW.Down),
-	awful.key({"Mod1" }, "c",         APW.ToggleMute),
+	awful.key({"Mod1" }, "w",         APW.ToggleMute),
 	awful.key({ modkey, }, "F3", keydoc.display)
 	)
 

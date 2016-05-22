@@ -30,6 +30,8 @@ function rule.globalrules()
 		 properties = { tag = tags[1][1] } },
 		{ rule = { class = "Discord" },
 		 properties = { tag = tags[1][3], maximized_horizontal = true, maximized_vertical = true } },
+		{ rule = { class = "Magic Assistant" },
+		 properties = { tag = tags[1][4], maximized_horizontal = true, maximized_vertical = true } },
 	}
 	return globalRule
 end

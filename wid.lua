@@ -83,7 +83,7 @@ cpuicon:set_image(beautiful.cpuicon)
 
 --{{--| MEM widget |-----------------
 memwidget2 = wibox.widget.textbox()
-vicious.register(memwidget2, vicious.widgets.mem, "<span background='"..beautiful.colors.violet.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1% ($2MB/$3MB)</span>", 13)
+vicious.register(memwidget2, vicious.widgets.mem, "<span background='"..beautiful.colors.violet.."' font='"..font.."' color='"..beautiful.colors.base03.."'>$1%</span>", 13)
 memicon = wibox.widget.imagebox()
 memicon:set_image(beautiful.mem)
 
