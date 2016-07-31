@@ -13,10 +13,9 @@
 
 table5={
    ["f"]={"vivaldi-beta","vivaldi"}, 
-   ["s"]={"skype","Skype"}, 
+   ["s"]={"ghetto-skype","Skype"}, 
    ["w"]={"wicd-gtk","Wicd"}, 
    ["c"]={"clementine","Clementine"},
    ["g"]={"steam","Steam"},
    ["a"]={"discord","Discord"},
-   ["q"]={"~/Downloads/MagicAssistant/magicassistant","Magic Assistant"},
 }

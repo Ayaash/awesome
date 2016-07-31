@@ -28,7 +28,7 @@ function other.userCommands()
 	awful.layout.inc(layouts,  1)
 	awful.util.spawn_with_shell("numlockx on")
 	awful.util.spawn_with_shell("synclient TouchpadOff=1")
-	awful.util.spawn_with_shell("skype")
+	awful.util.spawn_with_shell("ghetto-skype")
 end
 
 terminal = "urxvt"
