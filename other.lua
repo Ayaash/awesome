@@ -21,7 +21,7 @@ local layouts =
 
 -- user commands run during start
 function other.userCommands()
-	awful.util.spawn_with_shell("xcompmgr -C")
+	awful.util.spawn_with_shell("xcompmgr -C -f -D 3")
 	awful.util.spawn_with_shell('~/.config/awesome/locker')
 	awful.util.spawn_with_shell("pkill -9 wicd-client")
 	awful.util.spawn_with_shell("wicd-gtk")
