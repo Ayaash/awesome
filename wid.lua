@@ -165,6 +165,7 @@ function wid.createwibox(screen)
 		left_layout:add(mylauncher)
 		left_layout:add(mytaglist[s])
 		left_layout:add(mypromptbox[s])
+		left_layout.forced_width = 350
 
 		-- Informative widgets
 		local info = wibox.layout.fixed.horizontal()

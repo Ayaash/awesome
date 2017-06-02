@@ -133,14 +133,16 @@ function binding.keybinding()
 	end, "Lock screen"),
 
 	-- Prompt
-	awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end, "Prompt for a command"),
+	awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen.index]:run() end, "Prompt for a command"),
 
 	awful.key({ modkey }, "x",
 	function ()
-		awful.prompt.run({ prompt = "Run Lua code: " },
-		mypromptbox[mouse.screen].widget,
-		awful.util.eval, nil,
-		awful.util.getdir("cache") .. "/history_eval")
+        awful.prompt.run {
+           prompt       = "Run Lua code: ",
+           textbox      = mypromptbox[mouse.screen.index].widget,
+           exe_callback = awful.util.eval,
+           history_path = awful.util.get_cache_dir() .. "/history_eval"
+				 }
 	end),
 
 	-- Other

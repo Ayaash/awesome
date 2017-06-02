@@ -30,6 +30,7 @@ local signal = require("signal")
 local other = require("other")
 
 -- Personal variables 
+awesome.font = "Inconsolata 11"
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -68,6 +69,7 @@ editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 
+math.randomseed(os.time())
 wp_timeout = 600
 wp_path = "/home/ayaash/Images/Backgrounds/"
 wp_files = {}

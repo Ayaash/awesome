@@ -21,10 +21,10 @@ local margin_left   = 0         -- left margin in pixels of progressbar
 local margin_top    = 0         -- top margin in pixels of progressbar
 local margin_bottom = 0         -- bottom margin in pixels of progressbar
 local step          = 0.05      -- stepsize for volume change (ranges from 0 to 1)
-local color         = '#268bd2'--698f1e' -- foreground color of progessbar
-local color_bg      = '#3F473E'--33450f' -- background color
-local color_mute    = '#DC322F'--be2a15' -- foreground color when muted
-local color_bg_mute = '#3F473E'--532a15' -- background color when muted
+local color         = '#268bd2' -- foreground color of progessbar
+local color_bg      = '#002b36' -- background color
+local color_mute    = '#be2a15' -- foreground color when muted
+local color_bg_mute = '#532a15' -- background color when muted
 local mixer         = 'pavucontrol' -- mixer command
 local show_text     = false     -- show percentages on progressbar
 local text_color    = '#fff' -- color of text
@@ -32,6 +32,7 @@ local text_color    = '#fff' -- color of text
 -- End of configuration
 
 local awful = require("awful")
+local spawn_with_shell = awful.util.spawn_with_shell or awful.spawn.with_shell
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local pulseaudio = require("apw.pulseaudio")
@@ -60,7 +61,7 @@ local function make_stack(w1, w2)
         w2:draw(wibox, cr, width, height)
     end
 
-    update = function() ret:emit_signal("widget::updated") end
+    local update = function() ret:emit_signal("widget::updated") end
     w1:connect_signal("widget::updated", update)
     w2:connect_signal("widget::updated", update)
 
@@ -126,7 +127,7 @@ function pulseWidget.Update()
 end
 
 function pulseWidget.LaunchMixer()
-	awful.util.spawn_with_shell( mixer )
+	spawn_with_shell( mixer )
 end
 
 
@@ -138,6 +139,8 @@ pulseWidget:buttons(awful.util.table.join(
 		awful.button({ }, 5, pulseWidget.Down)
 	)
 )
+
+pulseWidget.pulse = p
 
 
 -- initialize

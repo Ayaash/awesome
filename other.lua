@@ -22,13 +22,11 @@ local layouts =
 -- user commands run during start
 function other.userCommands()
 	awful.util.spawn_with_shell("xcompmgr -C -f -D 3")
+	awful.util.spawn_with_shell("xset -b")
+	awful.util.spawn_with_shell("syncleint TapButton1=1")
 	awful.util.spawn_with_shell('~/.config/awesome/locker')
-	awful.util.spawn_with_shell("pkill -9 wicd-client")
-	awful.util.spawn_with_shell("wicd-gtk")
-	awful.layout.inc(layouts,  1)
 	awful.util.spawn_with_shell("numlockx on")
 	awful.util.spawn_with_shell("synclient TouchpadOff=1")
-	awful.util.spawn_with_shell("ghetto-skype")
 end
 
 terminal = "urxvt"
