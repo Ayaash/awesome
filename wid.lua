@@ -36,7 +36,7 @@ arr8:set_image(beautiful.arr8)
 arr9 = wibox.widget.imagebox()
 arr9:set_image(beautiful.arr9)
 
---{{-- Time and Date Widget }} --
+--{{ Time and Date Widget }} --
 datewidget = wibox.widget.textbox()
 vicious.register(datewidget,
 				 vicious.widgets.date,
@@ -165,7 +165,7 @@ function wid.createwibox(screen)
 		left_layout:add(mylauncher)
 		left_layout:add(mytaglist[s])
 		left_layout:add(mypromptbox[s])
-		left_layout.forced_width = 350
+		left_layout.forced_width = 1000
 
 		-- Informative widgets
 		local info = wibox.layout.fixed.horizontal()

@@ -64,14 +64,14 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/powerarrowf/theme.lua")
 
-terminal = "urxvt"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 
 math.randomseed(os.time())
 wp_timeout = 600
-wp_path = "/home/ayaash/Images/Backgrounds/"
+wp_path = "/udd/hayats/Images/Backgrounds/"
 wp_files = {}
 for f in io.popen("ls "..wp_path):lines() do
 	table.insert(wp_files, f)
